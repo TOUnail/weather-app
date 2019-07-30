@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import CurrentWeather from './components/current-weather/index';
+import ForecastWeather from './components/forecast/index';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSun, faCog } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faSun, faCog)
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="app-container sunny">
+        <div className="container">
+          <div className="current-weather-section">
+            <CurrentWeather />
+          </div>
+          <div className="forecast-section">
+            <ForecastWeather />
+          </div>
+        </div>
       </div>
     );
   }
