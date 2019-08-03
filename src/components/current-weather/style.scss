@@ -19,3 +19,31 @@
     justify-content: center;
     align-items: center;
 }
+
+/* Mobile-Landscape (and larger) */
+@media screen and (min-width: 480px) {
+    .weather-inner {
+        margin-top: 20%;
+    }
+}
+
+/* Tablet-Portrait (and larger) */
+@media screen and (min-width: 768px) {
+    .weather-inner {
+        margin-top: 30%;
+    }
+}
+
+/* Tablet-landscape (and larger) */
+@media screen and (min-width: 992px) {
+    .weather-inner {
+        margin-top: 40%;
+    }
+}
+
+/* Laptops (and larger) */
+@media screen and (min-width: 1200px) {
+    .weather-inner {
+        margin-top: 50%;
+    }
+}
