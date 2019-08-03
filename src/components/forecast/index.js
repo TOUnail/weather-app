@@ -8,10 +8,12 @@ export default class ForecastWeather extends React.Component {
         this.state = {}
     }
     //https://codepen.io/davallan/pen/amqRzv
+    //http://template.8guild.com/appica/android/index.html
     render() {
         return <div className="forecast-container">
-                    <div className="background-1"></div>
-                    <div className="background-2"></div>
+                    <div className="test-container">
+                        <p>Forecast</p>
+                    </div>
                 </div>;
     }
 }

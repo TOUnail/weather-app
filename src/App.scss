@@ -11,9 +11,7 @@ html, body {
 .app-container {
   width: 100%;
   min-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 15px;
   .container {
     display: flex;
     flex-direction: column;
