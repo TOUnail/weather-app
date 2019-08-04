@@ -1,49 +1,11 @@
-.current-weather {
-    font-size: 1.3rem;
-    color: #333;
-}
-
-.weather-settings {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
-}
 .weather-inner {
-    align-items: center;
-    margin-top: 40%;
-}
-
-.weather-inner, .high-low-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-}
-
-/* Mobile-Landscape (and larger) */
-@media screen and (min-width: 480px) {
-    .weather-inner {
-        margin-top: 20%;
+    .current-weather {
+        font-size: 4em;
     }
 }
-
-/* Tablet-Portrait (and larger) */
-@media screen and (min-width: 768px) {
-    .weather-inner {
-        margin-top: 30%;
-    }
-}
-
-/* Tablet-landscape (and larger) */
-@media screen and (min-width: 992px) {
-    .weather-inner {
-        margin-top: 40%;
-    }
-}
-
-/* Laptops (and larger) */
-@media screen and (min-width: 1200px) {
-    .weather-inner {
-        margin-top: 50%;
-    }
+.high-low-container {
+    display: flex;
+    justify-content: center;
 }

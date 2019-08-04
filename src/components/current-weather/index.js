@@ -12,7 +12,7 @@ export default class CurrentWeather extends React.Component {
     render() {
         return (
         <div className="current-weather-container">
-            <Weather />
+            <Weather {...this.props} />
         </div>
         );
     }
