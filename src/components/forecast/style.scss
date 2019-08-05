@@ -1,0 +1,13 @@
+.forecast-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.high-low-container {
+    display: flex;
+    justify-content: center;
+}
+.forecastday-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

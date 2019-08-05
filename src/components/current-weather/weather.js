@@ -6,7 +6,7 @@ export default class Weather extends React.Component {
         super(props);
     }
     render() {
-        const { temp, temp_min, temp_max } = this.props;
+        const { temp, condition } = this.props;
         return (
             <div className="weather-container">
                 <div className="weather-inner">
@@ -15,8 +15,8 @@ export default class Weather extends React.Component {
                         <FontAwesomeIcon icon="sun" size="3x" />
                     </div>
                 </div>
-                <div className="high-low-container">
-                    <div className="high">{ temp_max }&deg;</div>/<div className="low">{ temp_min }&deg;</div>
+                <div className="weather-condition">
+                    <p>{ condition }</p>
                 </div>
             </div>
         );

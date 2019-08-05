@@ -11,7 +11,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faSun, faTimes);
 
-const WEATHER_KEY = "8db5961a12875a55c2ec1e5cfd3cf5fa";
+const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
 
 class App extends Component {
   constructor(props) {
@@ -19,15 +19,15 @@ class App extends Component {
 
     this.state = {
       cityName: "Los Angeles",
-      forcastDays: 5,
+      numForecastDays: 5,
       isLoading: true,
-      changeLocation: false
+      editLocation: false
     }
   }
 
-  componentDidMount() {
-    const { cityName, forcastDays } = this.state;
-    const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${WEATHER_KEY}`;
+  updateWeather() {
+    const { cityName } = this.state;
+    const URL = `http://api.apixu.com/v1/forecast.json?key=${WEATHER_KEY}&q=${cityName}&days=5`;
     axios.get(URL).then((res) => {
       console.log("DATA: ", res);
       return res.data;
@@ -35,44 +35,78 @@ class App extends Component {
     .then((data) => {
       this.setState({
         isLoading: false,
-        temp: data.list[0].main.temp,
-        temp_min: data.list[0].main.temp_min,
-        temp_max: data.list[0].main.temp_max
+        temp: data.current.temp_f,
+        condition: data.current.condition.text,
+        isDay: data.current.is_day,
+        forecastdays: data.forecast.forecastday
       })
     })
     .catch((err) => {
       if(err) {
         console.error("Cannot fetch data from API, ", err);
       }
+    });
+  }
+
+  componentDidMount() {
+    const { eventEmitter } = this.props;
+
+    this.updateWeather();
+
+    eventEmitter.on("updateWeather", (data) => {
+      this.setState({
+        cityName: data
+      }, () => this.updateWeather());
     })
   }
 
-  changeLocation = () => {
+  editLocation = () => {
     this.setState({
-      changeLocation: !this.state.changeLocation
+      editLocation: !this.state.editLocation
     })
   }
 
+  onLocationNameChange(e) {
+    this.setState({ locationName: e.target.value });
+  }
+
+  onSelectCity(e) {
+    if (e.keyCode === 13) {
+      const {locationName} = this.state;
+      const {eventEmitter} = this.props;
+
+      eventEmitter.emit("updateWeather", locationName);
+      this.setState({
+        editLocation: false
+      });
+    }
+  }
 
   render() {
 
-    const {isLoading, cityName, temp, temp_min, temp_max, changeLocation} = this.state;
-
+    const {isLoading, cityName, temp, editLocation, condition, forecastdays} = this.state;
     return (
       <div className="app-container">
         <div className="container sunny">
           <div className="weather-settings">
             <div className="location-input">
-              {changeLocation &&
+              {editLocation &&
                 <div className="form-container">
-                  <input id="location-name" type="text" placeholder={ cityName } />
-                  <button onClick={this.changeLocation}>
+                  <input
+                    id="location-name"
+                    type="text"
+                    placeholder={ cityName }
+                    onKeyDown={this.onSelectCity.bind(this)}
+                    onChange= {this.onLocationNameChange.bind(this)}
+                    onBlur={() => this.setState({editLocation:false})}
+                  />
+                  <button onClick={this.editLocation}>
                     <FontAwesomeIcon icon="times" />
                   </button>
                 </div>
               }
-              {!changeLocation &&
-                <p onClick={this.changeLocation}>{ cityName }</p>
+              {!editLocation &&
+                <p onClick={this.editLocation}>{ cityName }</p>
               }
             </div>
             <div className="unit-toggle">
@@ -82,11 +116,18 @@ class App extends Component {
           {isLoading && <h3>Loading...</h3>}
           {!isLoading &&
           <div className="current-weather-section">
-            <CurrentWeather location={cityName} temp={temp} temp_min={temp_min} temp_max={temp_max} />
+            <CurrentWeather
+              location={cityName}
+              temp={temp}
+              condition={condition}
+              eventEmitter={this.props.eventEmitter}
+            />
           </div>
           }
           <div className="forecast-section">
-            <ForecastWeather />
+            <ForecastWeather
+              forecastdays={forecastdays}
+            />
           </div>
         </div>
       </div>
