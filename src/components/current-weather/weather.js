@@ -6,13 +6,33 @@ export default class Weather extends React.Component {
         super(props);
     }
     render() {
-        const { temp, condition } = this.props;
+        const { temp, condition, day } = this.props;
+        
+        let icon = null;
+        if (day === 1) {
+            if (condition === 'Sunny') {
+                icon = 'sun';
+            } else if (condition === 'Partly cloudy') {
+                icon = 'cloud-sun'
+            } else if (condition === 'Mist') {
+                icon = 'cloud';
+            }
+        } else if (day === 0) {
+            if (condition === 'Clear') {
+                icon = 'moon';
+            } else if (condition === 'Partly cloudy') {
+                icon = 'cloud-moon'
+            } else if (condition === 'Mist') {
+                icon = 'cloud';
+            }
+        }
+
         return (
             <div className="weather-container">
                 <div className="weather-inner">
                     <div className="current-weather">{ temp }&deg;</div>
                     <div className="image">
-                        <FontAwesomeIcon icon="sun" size="3x" />
+                        <FontAwesomeIcon icon={icon} size="3x" />
                     </div>
                 </div>
                 <div className="weather-condition">

@@ -7,9 +7,10 @@ import ForecastWeather from './components/forecast/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { faCloud } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faSun, faTimes);
+library.add(faSun, faCloud, faTimes);
 
 const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
 
@@ -84,7 +85,7 @@ class App extends Component {
 
   render() {
 
-    const {isLoading, cityName, temp, editLocation, condition, forecastdays} = this.state;
+    const {isLoading, cityName, temp, editLocation, condition, forecastdays, isDay} = this.state;
     return (
       <div className="app-container">
         <div className="container sunny">
@@ -120,6 +121,7 @@ class App extends Component {
               location={cityName}
               temp={temp}
               condition={condition}
+              day={isDay}
               eventEmitter={this.props.eventEmitter}
             />
           </div>
