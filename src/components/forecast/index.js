@@ -16,7 +16,7 @@ export default class ForecastWeather extends React.Component {
         const {forecastdays} = this.props;
         return <div className="forecast-container">
                     {forecastdays && forecastdays.map((day, idx) => {
-                        return <Forecastday day={day.day} key={idx} />
+                        return <Forecastday {...this.props} day={day.day} key={idx} />
                     })}
                 </div>;
     }

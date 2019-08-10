@@ -6,11 +6,9 @@ import ForecastWeather from './components/forecast/index';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSun } from '@fortawesome/free-solid-svg-icons';
-import { faCloud } from '@fortawesome/free-solid-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faCloud, faTimes, faCloudSun } from '@fortawesome/pro-solid-svg-icons';
 
-library.add(faSun, faCloud, faTimes);
+library.add(faSun, faCloud, faTimes, faMoon, faCloudSun);
 
 const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
 
@@ -129,6 +127,7 @@ class App extends Component {
           <div className="forecast-section">
             <ForecastWeather
               forecastdays={forecastdays}
+              eventEmitter={this.props.eventEmitter}
             />
           </div>
         </div>
