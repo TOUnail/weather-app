@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
-import axios from "axios";
+import axios from 'axios';
+import Switch from 'react-switch';
 import CurrentWeather from './components/current-weather/index';
 import ForecastWeather from './components/forecast/index';
 
@@ -20,8 +21,10 @@ class App extends Component {
       cityName: "Los Angeles",
       numForecastDays: 5,
       isLoading: true,
-      editLocation: false
+      editLocation: false,
+      checked: false
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   updateWeather() {
@@ -34,7 +37,10 @@ class App extends Component {
     .then((data) => {
       this.setState({
         isLoading: false,
-        temp: data.current.temp_f,
+        cityName: data.location.name,
+        regionName: data.location.region,
+        temp_f: data.current.temp_f,
+        temp_c: data.current.temp_c,
         condition: data.current.condition.text,
         isDay: data.current.is_day,
         forecastdays: data.forecast.forecastday
@@ -57,6 +63,10 @@ class App extends Component {
         cityName: data
       }, () => this.updateWeather());
     })
+  }
+
+  handleChange(checked) {
+    this.setState({checked});
   }
 
   editLocation = () => {
@@ -83,7 +93,7 @@ class App extends Component {
 
   render() {
 
-    const {isLoading, cityName, temp, editLocation, condition, forecastdays, isDay} = this.state;
+    const {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked} = this.state;
     return (
       <div className="app-container">
         <div className="container sunny">
@@ -105,21 +115,32 @@ class App extends Component {
                 </div>
               }
               {!editLocation &&
-                <p onClick={this.editLocation}>{ cityName }</p>
+                <p onClick={this.editLocation}>{ cityName }, { regionName }</p>
               }
             </div>
-            <div className="unit-toggle">
-              <p>O</p>
-            </div>
+            <label>
+              <Switch
+                onChange={this.handleChange}
+                checked={this.state.checked}
+                uncheckedIcon = {
+                  <div>&deg;F</div>
+                }
+                checkedIcon = {
+                  <div>&deg;C</div>
+                }
+              />
+            </label>
           </div>
           {isLoading && <h3>Loading...</h3>}
           {!isLoading &&
           <div className="current-weather-section">
             <CurrentWeather
               location={cityName}
-              temp={temp}
+              temp_f={temp_f}
+              temp_c={temp_c}
               condition={condition}
               day={isDay}
+              checked={checked}
               eventEmitter={this.props.eventEmitter}
             />
           </div>
@@ -127,6 +148,7 @@ class App extends Component {
           <div className="forecast-section">
             <ForecastWeather
               forecastdays={forecastdays}
+              checked={checked}
               eventEmitter={this.props.eventEmitter}
             />
           </div>

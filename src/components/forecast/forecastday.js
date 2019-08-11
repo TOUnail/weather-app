@@ -8,14 +8,26 @@ export default class Forecastday extends React.Component {
     }
 
     render () {
-        const {day} = this.props;
+        const {day, checked} = this.props;
+        let avgtemp = null;
+        let mintemp = null;
+        let maxtemp = null;
+        if (!checked) {
+            avgtemp = day.avgtemp_f;
+            maxtemp = day.maxtemp_f;
+            mintemp = day.mintemp_f;
+        } else {
+            avgtemp = day.avgtemp_c;
+            maxtemp = day.maxtemp_c;
+            mintemp = day.mintemp_c;
+        }
         return (
             <div className="forecastday-container">
                 <div className="forecastday-inner">
                     <WeatherIcon condition={day.condition.text} day={1} />
-                    <div className="forecast-weather">{day.avgtemp_f}&deg;</div>
+                    <div className="forecast-weather">{avgtemp}&deg;</div>
                     <div className="high-low-container">
-                        <div className="high">{ day.maxtemp_f }&deg;</div>/<div className="low">{ day.mintemp_f }&deg;</div>
+                        <div className="high">{ maxtemp }&deg;</div>/<div className="low">{ mintemp }&deg;</div>
                     </div>
                 </div>
             </div>
