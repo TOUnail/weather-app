@@ -24,7 +24,7 @@ export default class Forecastday extends React.Component {
         return (
             <div className="forecastday-container">
                 <div className="forecastday-inner">
-                    <WeatherIcon condition={day.condition.text} day={1} />
+                    <WeatherIcon conditionCode={day.condition.code} day={1} />
                     <div className="forecast-weather">{avgtemp}&deg;</div>
                     <div className="high-low-container">
                         <div className="high">{ maxtemp }&deg;</div>/<div className="low">{ mintemp }&deg;</div>

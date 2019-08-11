@@ -7,9 +7,13 @@ import ForecastWeather from './components/forecast/index';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSun, faMoon, faCloud, faTimes, faCloudSun } from '@fortawesome/pro-solid-svg-icons';
+import { faSun, faMoon, faCloud, faTimes, faCloudSun, faCloudDrizzle, faCloudSunRain } from '@fortawesome/pro-solid-svg-icons';
 
-library.add(faSun, faCloud, faTimes, faMoon, faCloudSun);
+library.add(
+  faSun, faCloud, faTimes,
+  faMoon, faCloudSun, faCloudDrizzle,
+  faCloudSunRain
+);
 
 const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
 
@@ -42,6 +46,7 @@ class App extends Component {
         temp_f: data.current.temp_f,
         temp_c: data.current.temp_c,
         condition: data.current.condition.text,
+        conditionCode: data.current.condition.code,
         isDay: data.current.is_day,
         forecastdays: data.forecast.forecastday
       })
@@ -93,7 +98,7 @@ class App extends Component {
 
   render() {
 
-    const {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked} = this.state;
+    const {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked, conditionCode} = this.state;
     return (
       <div className="app-container">
         <div className="container sunny">
@@ -123,10 +128,28 @@ class App extends Component {
                 onChange={this.handleChange}
                 checked={this.state.checked}
                 uncheckedIcon = {
-                  <div>&deg;F</div>
+                  <div
+                  style= {{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                    fontSize: 15,
+                    paddingRight: 2
+                  }}
+                  >&deg;F</div>
                 }
                 checkedIcon = {
-                  <div>&deg;C</div>
+                  <div
+                  style= {{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                    fontSize: 15,
+                    paddingLeft: 2
+                  }}
+                  >&deg;C</div>
                 }
               />
             </label>
@@ -138,6 +161,7 @@ class App extends Component {
               location={cityName}
               temp_f={temp_f}
               temp_c={temp_c}
+              conditionCode = {conditionCode}
               condition={condition}
               day={isDay}
               checked={checked}
