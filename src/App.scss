@@ -8,15 +8,16 @@ html, body, .container {
   height: 100%;
 }
 
+p {
+  margin: 0;
+}
+
 .container {
   padding: 15px;
 }
 
 .current-weather-container {
   display: flex;
-}
-
-.current-weather-container {
   justify-content: center;
   align-items: center;
   height: 60vh;
@@ -55,4 +56,28 @@ html, body, .container {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+  .current-weather-container {
+    height: 70vh;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  .current-weather-container {
+    height: 75vh;
+  }
 }

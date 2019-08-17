@@ -1,7 +1,13 @@
 .weather-inner {
     display: flex;
     align-items: center;
-    .current-weather {
+}
+.current-weather {
+    display: flex;
+    .current-temp {
+        font-size: 6em;
+    }
+    .current-degrees {
         font-size: 4em;
     }
 }

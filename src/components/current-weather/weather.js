@@ -20,7 +20,7 @@ export default class Weather extends React.Component {
             <div className="weather-container">
                 <div className="weather-inner">
                     <div className="current-weather">
-                    { temp }&deg;
+                        <span className="current-temp">{ temp }</span><span className="current-degrees">&deg;</span>
                     </div>
                     <WeatherIcon {...this.props} />
                 </div>

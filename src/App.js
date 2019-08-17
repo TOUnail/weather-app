@@ -26,7 +26,8 @@ import {
   faCloudShowers,
   faCloudShowersHeavy,
   faCloudHailMixed,
-  faCloudHail
+  faCloudHail,
+  faThunderstorm
 } from '@fortawesome/pro-solid-svg-icons';
 
 library.add(
@@ -48,7 +49,8 @@ library.add(
   faCloudShowers,
   faCloudShowersHeavy,
   faCloudHailMixed,
-  faCloudHail
+  faCloudHail,
+  faThunderstorm
 );
 
 const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
@@ -79,6 +81,7 @@ class App extends Component {
         isLoading: false,
         cityName: data.location.name,
         regionName: data.location.region,
+        countryName: data.location.country,
         temp_f: data.current.temp_f,
         temp_c: data.current.temp_c,
         condition: data.current.condition.text,
@@ -134,7 +137,31 @@ class App extends Component {
 
   render() {
 
-    const {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked, conditionCode} = this.state;
+    let {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked, conditionCode, countryName} = this.state;
+    let locationLabel = null;
+    if (countryName !== 'United States of America' && countryName !== 'USA') {
+      if (regionName === "" && countryName === "Hong Kong") {
+        locationLabel = `${cityName}`;
+      } else if (regionName === "ÅŒsaka") {
+        locationLabel = `${cityName}, Osaka, ${countryName}`
+      } else if (regionName === "HokkaidÅ") {
+        locationLabel = `${cityName}, Hokkaido, ${countryName}`
+      } else if (regionName === "HyÅgo") {
+        locationLabel = `${cityName}, Hyōgo, ${countryName}`
+      } else if (regionName === "KÅchi") {
+        locationLabel = `${cityName}, Kōchi, ${countryName}`
+      } else if (regionName === "KyÅto") {
+        locationLabel = `${cityName}, Kyoto, ${countryName}`
+      } else if (regionName === "ÅŒita") {
+        locationLabel = `${cityName}, Oita, ${countryName}`
+      } else if (countryName === "Singapore" || countryName === "Vietnam") {
+        locationLabel = `${cityName}, ${countryName}`;
+      } else {
+        locationLabel = `${cityName}, ${regionName}, ${countryName}`;
+      }
+    } else {
+      locationLabel = `${cityName}, ${regionName}`;
+    }
     return (
       <div className="app-container">
         <div className="container sunny">
@@ -156,7 +183,7 @@ class App extends Component {
                 </div>
               }
               {!editLocation &&
-                <p onClick={this.editLocation}>{ cityName }, { regionName }</p>
+                <p onClick={this.editLocation}>{locationLabel}</p>
               }
             </div>
             <label>
