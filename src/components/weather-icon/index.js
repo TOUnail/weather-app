@@ -28,15 +28,18 @@ export default class WeatherIcon extends React.Component {
                 }
                 break;
             case 1006:
-                icon = 'cloud';
-                break;
             case 1009:
                 icon = 'cloud';
                 break;
             case 1030:
+            case 1135:
+            case 1147:
                 icon = 'fog';
                 break;
             case 1063:
+            case 1180:
+            case 1186:
+            case 1192:
                 if (day === 1) {
                     icon = 'cloud-sun-rain';
                 } else {
@@ -44,15 +47,29 @@ export default class WeatherIcon extends React.Component {
                 }
                 break;
             case 1066:
+            case 1213:
+            case 1216:
+            case 1219:
+            case 1222:
+            case 1225:
+            case 1255:
+            case 1258:
+            case 1279:
+            case 1282:
                 icon = 'cloud-snow'
                 break;
             case 1069:
-                icon = 'cloud-sleet';
-                break;
             case 1072:
+            case 1168:
+            case 1171:
+            case 1204:
+            case 1207:
+            case 1249:
+            case 1252:
                 icon = 'cloud-sleet';
                 break;
             case 1087:
+            case 1273:
                 if (day === 1) {
                     icon = 'thunderstorm-sun';
                 } else {
@@ -60,48 +77,34 @@ export default class WeatherIcon extends React.Component {
                 }
                 break;
             case 1114:
-                icon = 'snow-blowing';
-                break;
             case 1117:
                 icon = 'snow-blowing';
                 break;
-            case 1135:
-                icon = 'fog';
-                break;
-            case 1147:
-                icon = 'fog';
-                break;
             case 1150:
-                icon = 'cloud-drizzle';
-                break;
             case 1153:
-                icon = 'cloud-drizzle';
-                break;
-            case 1168:
-                icon = 'cloud-sleet';
-                break;
-            case 1171:
-                icon = 'cloud-sleet';
-                break;
-            case 1180:
-                if (day === 1) {
-                    icon = 'cloud-sun-rain';
-                } else {
-                    icon = 'cloud-moon-rain';
-                }
-                break;
             case 1183:
+            case 1198:
                 icon = 'cloud-drizzle';
-                break;
-            case 1186:
-                if (day === 1) {
-                    icon = 'cloud-sun-rain';
-                } else {
-                    icon = 'cloud-moon-rain';
-                }
                 break;
             case 1189:
+            case 1240:
                 icon = 'cloud-showers';
+                break;
+            case 1195:
+            case 1243:
+            case 1246:
+                icon = 'cloud-showers-heavy';
+                break;
+            case 1201:
+                icon = 'cloud-hail-mixed'
+                break;
+            case 1237:
+            case 1261:
+            case 1264:
+                icon = 'cloud-hail';
+                break;
+            case 1276:
+                icon = 'thunderstorm';
                 break;
             default:
                console.log('conditionCode:' + conditionCode);

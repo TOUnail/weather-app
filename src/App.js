@@ -7,15 +7,48 @@ import ForecastWeather from './components/forecast/index';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSun, faMoon, faCloud, faCloudMoon, faTimes, faCloudSun, faCloudDrizzle, faCloudSunRain, faCloudMoonRain, faFog, faCloudSnow, faCloudSleet, faThunderstormSun, faThunderstormMoon, faSnowBlowing, faCloudShowers } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faSun,
+  faMoon,
+  faCloud,
+  faCloudMoon,
+  faTimes,
+  faCloudSun,
+  faCloudDrizzle,
+  faCloudSunRain,
+  faCloudMoonRain,
+  faFog,
+  faCloudSnow,
+  faCloudSleet,
+  faThunderstormSun,
+  faThunderstormMoon,
+  faSnowBlowing,
+  faCloudShowers,
+  faCloudShowersHeavy,
+  faCloudHailMixed,
+  faCloudHail
+} from '@fortawesome/pro-solid-svg-icons';
 
 library.add(
-  faSun, faCloud, faTimes,
-  faMoon, faCloudSun, faCloudMoon,
-  faCloudDrizzle, faCloudSunRain, faFog,
-  faCloudMoonRain, faCloudSnow, faCloudSleet,
-  faThunderstormSun, faThunderstormMoon, faSnowBlowing,
-  faCloudShowers
+  faSun,
+  faMoon,
+  faCloud,
+  faCloudMoon,
+  faTimes,
+  faCloudSun,
+  faCloudDrizzle,
+  faCloudSunRain,
+  faCloudMoonRain,
+  faFog,
+  faCloudSnow,
+  faCloudSleet,
+  faThunderstormSun,
+  faThunderstormMoon,
+  faSnowBlowing,
+  faCloudShowers,
+  faCloudShowersHeavy,
+  faCloudHailMixed,
+  faCloudHail
 );
 
 const WEATHER_KEY = "e97dcf86c1bc479c82f204150190408";
