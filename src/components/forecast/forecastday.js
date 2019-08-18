@@ -8,7 +8,7 @@ export default class Forecastday extends React.Component {
     }
 
     render () {
-        const {day, checked} = this.props;
+        const {day, checked, dayWeek} = this.props;
         let avgtemp = null;
         let mintemp = null;
         let maxtemp = null;
@@ -21,9 +21,22 @@ export default class Forecastday extends React.Component {
             maxtemp = day.maxtemp_c;
             mintemp = day.mintemp_c;
         }
+        let a = new Date(dayWeek*1000);
+        const days = [
+            'Mon',
+            'Tues',
+            'Wed',
+            'Thurs',
+            'Fri',
+            'Sat',
+            'Sun'
+        ]
+        let dayOfWeek = days[a.getDay()];
+        console.log(this.props)
         return (
             <div className="forecastday-container">
                 <div className="forecastday-inner">
+                    <p>{dayOfWeek}</p>
                     <WeatherIcon conditionCode={day.condition.code} day={1} />
                     <div className="forecast-weather">{avgtemp}&deg;</div>
                     <div className="high-low-container">

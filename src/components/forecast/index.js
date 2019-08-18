@@ -14,10 +14,12 @@ export default class ForecastWeather extends React.Component {
     //http://template.8guild.com/appica/android/index.html
     render() {
         const {forecastdays} = this.props;
-        return <div className="forecast-container">
-                    {forecastdays && forecastdays.map((day, idx) => {
-                        return <Forecastday {...this.props} day={day.day} key={idx} />
-                    })}
-                </div>;
+        return (
+            <div className="forecast-container">
+                {forecastdays && forecastdays.slice(1).map((day, idx) => {
+                    return <Forecastday {...this.props} dayWeek={day.date_epoch} day={day.day} key={idx} />
+                })}
+            </div>
+        );
     }
 }

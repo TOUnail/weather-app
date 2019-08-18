@@ -71,7 +71,7 @@ class App extends Component {
 
   updateWeather() {
     const { cityName } = this.state;
-    const URL = `http://api.apixu.com/v1/forecast.json?key=${WEATHER_KEY}&q=${cityName}&days=5`;
+    const URL = `http://api.apixu.com/v1/forecast.json?key=${WEATHER_KEY}&q=${cityName}&days=6`;
     axios.get(URL).then((res) => {
       console.log("DATA: ", res);
       return res.data;
@@ -116,7 +116,7 @@ class App extends Component {
   editLocation = () => {
     this.setState({
       editLocation: !this.state.editLocation
-    })
+    });
   }
 
   onLocationNameChange(e) {
@@ -137,7 +137,20 @@ class App extends Component {
 
   render() {
 
-    let {isLoading, cityName, regionName, temp_f, temp_c, editLocation, condition, forecastdays, isDay, checked, conditionCode, countryName} = this.state;
+    let {
+      isLoading,
+      cityName,
+      regionName,
+      temp_f,
+      temp_c,
+      editLocation,
+      condition,
+      forecastdays,
+      isDay,
+      checked,
+      conditionCode,
+      countryName
+    } = this.state;
     let locationLabel = null;
     if (countryName !== 'United States of America' && countryName !== 'USA') {
       if (regionName === "" && countryName === "Hong Kong") {
@@ -154,6 +167,8 @@ class App extends Component {
         locationLabel = `${cityName}, Kyoto, ${countryName}`
       } else if (regionName === "ÅŒita") {
         locationLabel = `${cityName}, Oita, ${countryName}`
+      } else if (regionName === "TÅkyÅ") {
+        locationLabel = `${cityName}, Tokyo, ${countryName}`
       } else if (countryName === "Singapore" || countryName === "Vietnam") {
         locationLabel = `${cityName}, ${countryName}`;
       } else {
@@ -176,8 +191,9 @@ class App extends Component {
                     onKeyDown={this.onSelectCity.bind(this)}
                     onChange= {this.onLocationNameChange.bind(this)}
                     onBlur={() => this.setState({editLocation:false})}
+                    autoFocus
                   />
-                  <button onClick={this.editLocation}>
+                  <button className="cancel-btn" onClick={this.editLocation}>
                     <FontAwesomeIcon icon="times" />
                   </button>
                 </div>
