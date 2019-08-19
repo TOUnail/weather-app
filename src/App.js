@@ -84,6 +84,11 @@ class App extends Component {
         countryName: data.location.country,
         temp_f: data.current.temp_f,
         temp_c: data.current.temp_c,
+        wind_mph: data.current.wind_mph,
+        wind_kph: data.current.wind_kph,
+        wind_degree: data.current.wind_degree,
+        wind_dir: data.current.wind_dir,
+        humidity: data.current.humidity,
         condition: data.current.condition.text,
         conditionCode: data.current.condition.code,
         isDay: data.current.is_day,
@@ -143,6 +148,11 @@ class App extends Component {
       regionName,
       temp_f,
       temp_c,
+      wind_mph,
+      wind_kph,
+      wind_degree,
+      wind_dir,
+      humidity,
       editLocation,
       condition,
       forecastdays,
@@ -240,6 +250,11 @@ class App extends Component {
               location={cityName}
               temp_f={temp_f}
               temp_c={temp_c}
+              wind_mph={wind_mph}
+              wind_kph={wind_kph}
+              wind_degree={wind_degree}
+              wind_dir={wind_dir}
+              humidity={humidity}
               conditionCode = {conditionCode}
               condition={condition}
               day={isDay}

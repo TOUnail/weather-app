@@ -42,6 +42,7 @@ export default class Forecastday extends React.Component {
                     <div className="high-low-container">
                         <div className="high">{ maxtemp }&deg;</div>/<div className="low">{ mintemp }&deg;</div>
                     </div>
+                    <p>{day.condition.text}</p>
                 </div>
             </div>
         );
